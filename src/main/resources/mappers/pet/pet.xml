@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pet">
+	<select id="list" resultType="com.example.dogacat.model.pet.PetDTO">
+		SELECT B.* FROM(
+			SELECT rownum() AS rn, A.* FROM(
+		SELECT pet_code, t.type_name, pet_name, size, gender, birth, weight, peanut, bark, bite, filename
+		FROM pet p, type_code t WHERE id=#{id} AND p.pet_type = t.pet_type ORDER BY pet_code
+		)A
+		)B
+		WHERE B.rn &gt;= #{start} AND B.rn &lt;= #{end}
+	</select>
+	
+	<select id="view" resultType="com.example.dogacat.model.pet.PetDTO">
+		select * from pet where pet_code=#{pet_code}
+	</select>
+	
+	<select id="type_name" resultType="String">
+		select t.type_name from pet p, type_code t 
+		where pet_code = #{pet_code} and p.pet_type = t.pet_type
+	</select>
+	
+	<update id="update">
+		update pet
+		set pet_type=#{pet_type}, pet_name=#{pet_name},size=#{size},gender=#{gender},birth=#{birth},weight=#{weight},
+		peanut=#{peanut},bark=#{bark},bite=#{bite},filename=#{filename}
+		where pet_code=#{pet_code}
+	</update>
+	
+	<insert id="insert">
+		insert into pet(id,pet_type,pet_name,size,gender,birth,weight,peanut,bark,bite,filename) 
+		values (#{id},#{pet_type},#{pet_name},#{size},#{gender},#{birth},#{weight},#{peanut},#{bark},#{bite},#{filename})
+	</insert>
+	
+	<delete id="delete">
+		delete from pet where pet_code=#{pet_code}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from pet where id=#{id}
+	</delete>
+	
+	<select id="find_master" resultType="String">
+		select nickname from member where id=#{id}
+	</select>
+	
+	<select id="up" resultType="com.example.dogacat.model.pet.PetDTO">
+		select * from pet where pet_code &gt; #{pet_code} order by pet_code limit 1
+	</select>
+	
+	<select id="down" resultType="com.example.dogacat.model.pet.PetDTO">
+		select * from pet where pet_code &lt; #{pet_code} order by pet_code desc limit 1
+	</select>
+	
+	<select id="pet_filename" resultType="com.example.dogacat.model.pet.PetDTO">
+		select * from pet WHERE filename != '-'
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from pet where id=#{id}
+	</select>
+</mapper>

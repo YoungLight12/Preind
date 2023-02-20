@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="writer">
+	<select id="list" resultType="com.example.dogacat.model.writer.WriterDTO">
+		SELECT B.* FROM(
+			SELECT rownum() AS rn, A.* FROM(
+				SELECT write_code, nickname, title, TEXT, filename, DATE, hit, address 
+				FROM member m, writer w where m.id = w.id 
+				<include refid="search" />
+				ORDER BY write_code DESC
+			)A
+		)B
+		WHERE B.rn &gt;= #{start} AND B.rn &lt;= #{end}
+	</select>
+
+	<select id="view" resultType="com.example.dogacat.model.writer.WriterDTO">
+		select write_code, w.id, nickname, pet_code, title, TEXT, filename, DATE, hit, address
+		FROM member m, writer w where w.id = m.id and write_code = #{write_code}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from writer w, member m where m.id = w.id 
+		<include refid="search"/> 
+	</select>
+	
+	<update id="hit">
+		UPDATE writer SET hit = hit+1 WHERE write_code=#{write_code}
+	</update>
+	
+	<update id="update">
+		update writer set pet_code = #{pet_code}, title = #{title}, text = #{text}, 
+						  filename = #{filename}
+		where write_code = #{write_code}
+	</update>
+	
+	<insert id="insert">
+		INSERT INTO writer(id,pet_code,title,text,filename,address)
+		VALUES (#{id}, #{pet_code}, #{title}, #{text}, #{filename}, #{address});
+	</insert>
+	
+	<delete id="delete">
+		delete from writer where write_code=#{write_code}
+	</delete>
+	
+	<sql id="search">
+		<choose>
+			<when test="search_option == 'all'">
+				and address=#{address} and
+				(nickname like CONCAT('%',#{keyword},'%')
+				or text like CONCAT('%',#{keyword},'%')
+				or title like CONCAT('%',#{keyword},'%'))
+			</when>
+			<otherwise>
+				and address=#{address} and
+				${search_option} like CONCAT('%',#{keyword},'%')
+			</otherwise>
+		</choose>
+	</sql>
+</mapper>

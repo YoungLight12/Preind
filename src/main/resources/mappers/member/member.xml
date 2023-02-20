@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<select id="login" resultType="com.example.dogacat.model.member.MemberDTO">
+		select * from member where id=#{id} and pw = #{pw}
+	</select>
+	
+	<insert id="insert">
+		insert into member
+		values (#{id},#{pw},#{name},#{nickname},#{email},#{post_code},#{address1},#{address2},1,0)
+	</insert>
+	
+	<update id="update">
+		update member 
+		set pw=#{pw},nickname=#{nickname},email=#{email},
+		post_code=#{post_code},address1=#{address1},address2=#{address2},lv=#{lv},grade=#{grade}
+		where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from member where id=#{id}
+	</delete>
+	
+	<select id="find_id" resultType="String">
+		select id from member where name=#{name} and email=#{email}
+	</select>
+	
+	<select id="find_pw" resultType="String">
+		select pw from member where id=#{id} and name=#{name} and email=#{email}
+	</select>
+	
+	<select id="checkid" resultType="int">
+		select count(*) from member where id=#{id}
+	</select>
+	
+	<select id="checkpw" resultType="int">
+		select count(*) from member where id=#{id} and pw=#{pw}
+	</select>
+	
+	<select id="info" resultType="com.example.dogacat.model.member.MemberDTO">
+		select * from member where id=#{id}
+	</select>
+	
+	<select id="list" resultType="com.example.dogacat.model.member.MemberDTO">
+		select * from member where address1 != ''
+	</select>
+	
+	<select id="addresslist" resultType="String">
+		select address1 from member where address1 != ''
+	</select>
+</mapper>
