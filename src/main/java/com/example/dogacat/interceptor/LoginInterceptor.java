@@ -17,7 +17,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		//System.out.println(session.getAttribute("id"));
 		
 		if (session.getAttribute("id") == null) {
-			response.sendRedirect(request.getContextPath() + "/member/login_page.do?message=nologin");
+			response.sendRedirect(request.getContextPath() + "/login/login_page.do?message=nologin");
 			return false;	//메인 액션 차단
 		} else {
 			return true;

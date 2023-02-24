@@ -9,10 +9,12 @@
 	<input type="hidden" value="${dto.write_code}" name="write_code"
 		id="write_code"> <input type="hidden"
 		value="${sessionScope.id}" name="id" id="id">
+
 	<div class="d-flex">
 		<div class="form-floating flex-fill">
 			<textarea class="form-control" placeholder="Leave a comment here"
 				id="reply_text" name="reply_text"
+				<c:if test="${sessionScope.id == null}">disabled</c:if>
 				style="min-height: 100px; max-height: 100px; min-width: 95%; max-width: 95%;"></textarea>
 			<label for="reply_text">Comments</label>
 		</div>
@@ -41,17 +43,22 @@
 				${row.nickname}( <fmt:formatDate value="${row.date}"
 				pattern="yyyy-MM-dd" /> ) 
 				&nbsp;
-				<c:if test="${sessionScope.id == row.id }">
+				
 				<div class="btn-group" role="group" aria-label="btnGroup">
+				<c:if test="${sessionScope.id == row.id }">
 					<input type="button" class="btn btn-success btn-sm" value="수정"
-						onclick="showModify('${row.idx}')"> <input type="button"
-						class="btn btn-danger btn-sm" value="삭제"
+						onclick="showModify('${row.idx}')">
+				</c:if>
+
+				<c:if test="${sessionScope.id == row.id || sessionScope.lv eq '10'}">
+					<input type="button" class="btn btn-danger btn-sm" value="삭제"
 						onclick="reply_delete('${row.idx}')">
-				</div>
-			</c:if>
+				</c:if>
+			</div>
+
 			<br>
-				<textarea class="form-control" readonly
-					style="min-height: 50px; max-height: 150px; min-width: 95%; max-width: 95%;">${str}</textarea>
+			<textarea class="form-control" readonly
+				style="min-height: 50px; max-height: 150px; min-width: 95%; max-width: 95%;">${str}</textarea>
 			<br>
 			<div id="modifyReply"></div>
 			<hr>

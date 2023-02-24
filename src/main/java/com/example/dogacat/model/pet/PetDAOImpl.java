@@ -66,8 +66,8 @@ public class PetDAOImpl implements PetDAO {
 	}
 	
 	@Override
-	public List<PetDTO> pet_filename() {
-		return sqlSession.selectList("pet.pet_filename");
+	public List<String> pet_filename(String id) {
+		return sqlSession.selectList("pet.pet_filename", id);
 	}
 
 	@Override

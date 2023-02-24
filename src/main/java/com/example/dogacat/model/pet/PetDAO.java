@@ -23,5 +23,5 @@ public interface PetDAO {
 	
 	PetDTO down(int pet_code);
 	
-	List<PetDTO> pet_filename();
+	List<String> pet_filename(String id);
 }

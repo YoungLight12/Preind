@@ -259,11 +259,14 @@ body {
 								<c:if test="${sessionScope.id.equals(dto.getId())}">
 									<input type="button" class="btn btn-success" value="수정"
 										onclick="update(${dto.getWrite_code()})">
-
-									<input type="button" class="btn btn-danger" value="삭제" 	onclick="de()">
 								</c:if>
+							<c:if
+								test="${sessionScope.id.equals(dto.getId()) || sessionScope.lv eq '10' }">
+								<input type="button" class="btn btn-danger" value="삭제"
+									onclick="de()">
+							</c:if>
 
-								<input type="button" class="btn btn-secondary" value="목록"
+							<input type="button" class="btn btn-secondary" value="목록"
 									onclick="move('${dto.getAddress()}')">
 							</div>
 						</div>

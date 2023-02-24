@@ -38,7 +38,7 @@
 			<li><a href="/map/mymap.do" class="nav-link px-2 link-dark mx-3" id="menu">주변 Priend 찾기</a></li>
 			<li><a href="/member/info.do" class="nav-link px-2 link-dark mx-3" id="menu">개인정보</a></li>
 			<li><a href="/writer/community.do" class="nav-link px-2 link-dark mx-3" id="menu">커뮤니티</a></li>
-			<li><a href="/homepage/homepage.do" class="nav-link px-2 link-dark mx-3" id="menu">About</a></li>
+			<li><a href="/info.do" class="nav-link px-2 link-dark mx-3" id="menu">About</a></li>
 		</ul>
 
 		<!-- Login -->

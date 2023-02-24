@@ -66,7 +66,6 @@ $(function(){
 <body>
 	<%@include file="../include/menu2.jsp"%>
 
-	<br>
 	<h2 align="center">반려동물 정보</h2>
 	<br>
 

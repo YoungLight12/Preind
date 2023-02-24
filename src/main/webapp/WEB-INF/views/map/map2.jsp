@@ -50,8 +50,25 @@ function map(){
 
 	var position =  new kakao.maps.LatLng(${y}, ${x});
 	
+	var imgS = new kakao.maps.Size(64, 69);
+	if('${filename}' != 'home3.png'){
+		imgS = new kakao.maps.Size(50, 50); // 마커이미지의 크기입니다
+	} else {
+		imgS = new kakao.maps.Size(110, 35); // 마커이미지의 크기입니다
+	}
+
+	var imageSrc = '../resources/images/${filename}', // 마커이미지의 주소입니다  
+					imageSize = imgS,
+    				imageOption = {offset: new kakao.maps.Point(25, 25)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+    				  markerPosition = position; // 마커가 표시될 위치입니다
+
+	
 	var marker = new kakao.maps.Marker({
 		position: position, // 마커를 표시할 위치
+		image: markerImage,
 		clickable: true
 	});
 	marker.setMap(map);
@@ -104,13 +121,36 @@ function map(){
 				 * Math.cos(coords.getLat()/180*Math.PI)
 				 * Math.cos((${x}-coords.getLng())/180*Math.PI));
     
-				 if(a<$('#range').val() && a!=0){						
+				 if(a<$('#range').val() && a!=0){	
+					 var imgS = new kakao.maps.Size(64, 69);
+						if(addr[3] != 'home3.png'){
+							imgS = new kakao.maps.Size(50, 50); // 마커이미지의 크기입니다
+						} else {
+							imgS = new kakao.maps.Size(110, 35); // 마커이미지의 크기입니다
+						}
+
+						var imageSrc = '../resources/images/'+addr[3], // 마커이미지의 주소입니다  
+										imageSize = imgS,
+					    				imageOption = {offset: new kakao.maps.Point(25, 25)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					    
+						// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+						var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+					    				  markerPosition = position; // 마커가 표시될 위치입니다
+
+						
 						var marker = new kakao.maps.Marker({
+							position: coords, // 마커를 표시할 위치
+							image: markerImage,
+							clickable: true
+						});
+						marker.setMap(map);
+					 
+						/* var marker = new kakao.maps.Marker({
 							position: coords, // 마커를 표시할 위치
 							clickable: true
 						});
 					
-						marker.setMap(map);
+						marker.setMap(map); */
 							
                 // 인포윈도우를 생성합니다
                 var infowindow = new kakao.maps.InfoWindow({

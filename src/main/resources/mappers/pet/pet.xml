@@ -52,8 +52,8 @@
 		select * from pet where pet_code &lt; #{pet_code} order by pet_code desc limit 1
 	</select>
 	
-	<select id="pet_filename" resultType="com.example.dogacat.model.pet.PetDTO">
-		select * from pet WHERE filename != '-'
+	<select id="pet_filename" resultType="String">
+		select filename from pet WHERE id=#{id}
 	</select>
 	
 	<select id="count" resultType="int">

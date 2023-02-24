@@ -41,6 +41,7 @@ public class MapController {
 
 		String addr = "서울 마포구 신촌로 94 그랜드마트";
 		String id = (String) session.getAttribute("id");
+		String filename = "home3.png";
 
 		if (id != null) {
 			MemberDTO dto = memberDAO.info(id);
@@ -50,24 +51,44 @@ public class MapController {
 			} else {
 				addr = dto.getAddress1();
 			}
+
+			List<String> file = petDAO.pet_filename(id);
+			try {
+				if (!file.get(0).equals("") || !file.get(0).equals("-")) {
+					filename = file.get(0);
+				}
+			} catch (Exception e) {
+				filename = "noimage.png";
+			}
+			
 		}
 
-		List<PetDTO> pet_filename = petDAO.pet_filename();
+		// List<PetDTO> pet_filename = petDAO.pet_filename();
 		List<MemberDTO> list3 = memberDAO.list();
-		
+
 		List<List<String>> lists = new ArrayList<>();
-		
-		for (MemberDTO memberDTO : list3) {		
+
+		for (MemberDTO memberDTO : list3) {
 			List<String> list = new ArrayList<>();
+			List<String> file = petDAO.pet_filename(memberDTO.getId());
+			String file1 = "";
 			
-			list.add("'"+memberDTO.getAddress1()+"'");
-			list.add("'"+memberDTO.getNickname()+"'");
-			list.add("'"+memberDTO.getId()+"'");
-			
+			try {
+				file1 = file.get(0);
+			} catch (Exception e) {
+				file1 = "noimage.png";
+			}
+
+			list.add("'" + memberDTO.getAddress1() + "'");
+			list.add("'" + memberDTO.getNickname() + "'");
+			list.add("'" + memberDTO.getId() + "'");
+			list.add("'" + file1 + "'");
+
 			lists.add(list);
 		}
 
-		mav.addObject("all", pet_filename);
+		// mav.addObject("all", pet_filename);
+		mav.addObject("filename", filename);
 
 		mav.addObject("list", lists);
 
@@ -77,7 +98,7 @@ public class MapController {
 		mav.setViewName("map/Page2");
 
 		return mav;
-		
+
 //		ModelAndView mav = new ModelAndView();
 //
 //		String addr = "서울 마포구 신촌로 94 그랜드마트";

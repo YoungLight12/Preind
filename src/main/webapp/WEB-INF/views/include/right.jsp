@@ -4,17 +4,55 @@
 
 <style>
 .floating {
-  position: sticky; 
-  top: 200px; 
-} 
+	position: sticky;
+	top: 200px;
+}
+
+#box {
+	padding: 5px;
+	background: silver;
+	width: 230px;
+	height: 150px;
+	border-radius: 5px;
+}
+
+#box2 {
+	padding: 5px;
+	background: silver;
+	width: 230px;
+	height: 100px;
+	border-radius: 5px;
+}
 </style>
 
 <div class="floating">
-  <div>	다음뷰 추천위젯코드 삽입</div>
-  <div>트위터 공유코드 삽입</div>
-  <div>	페이스북 공유코드 삽입</div>
-</div>
+	<c:choose>
+		<c:when test="${sessionScope.id == null}">
+			<div id="box">
+				<form method="post" action="/login/login.do">
+					<div class="d-flex">
+						<div class="d-flex flex-column mb-3 w-75">
+							<input id="id" name="id" placeholder="아이디" style="margin: 3px;">
+							<input type="password" id="pw" name="pw" placeholder="비밀번호" style="margin: 3px;">
+						</div>
+						<div>
+							<button class="btn btn-primary flex-shrink-1 h-75 text-center">Login</button>
+						</div>
+					</div>
+				</form>
+				<a href="/login/join.do" class="btn btn-primary" role="button" id="menu">Sign-up</a>
+			</div>
+		</c:when>
 
-<div class="list-group w-50 mt-5" style="min-width: 30px; visibility: hidden;">
-	<input class="list-group-item list-group-item-action" style="background: #282828; color: white; text-align: center; font-size: 20px" value="MENU">
+		<c:otherwise>
+			<div id="box2">
+				<div style="padding-top: 10px;">${sessionScope.nickname}님 환영합니다.</div>
+				<br>
+				<div>
+					<a href="/login/logout.do">로그아웃</a>&nbsp;
+					<a href="/homepage/homepage.do">개인페이지</a>
+				</div>
+			</div>
+		</c:otherwise>
+	</c:choose>
 </div>

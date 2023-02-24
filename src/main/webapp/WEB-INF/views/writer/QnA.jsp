@@ -152,7 +152,7 @@ body{
 			</div>
 
 			<div id="right" class="p-2" align="center">
-				<%@include file="../include/left.jsp"%>
+				<%@include file="../include/right.jsp"%>
 			</div>
 		</div>
 	</div>

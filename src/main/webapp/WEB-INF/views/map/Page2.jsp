@@ -22,6 +22,18 @@ body {
 	background: url("/resources/images/background2.jpg");
 }
 </style>
+<script>
+	$(function(){
+		$.ajax({
+			type : "post",
+			url : "/pet/info_only.do?pet_code="+${dto.getPet_code()},
+			
+			success : function(result) {
+				$("#neighbor").html(result);
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<header><%@ include file="../include/menu2.jsp"%></header>
@@ -38,19 +50,12 @@ body {
 				<div class="d-flex flex-column mb-3">
 					<br>
 					<h2 align="center">주변 Preind 찾기</h2>
-
-					<!-- <div class="px-5 w-25">
-						<select class="form-select form-select-sm" onchange="mapchange" name="range" id="range">		
-							<option value="0.5">500m</option>
-							<option value="1" selected>1km</option>
-							<option value="3">3km</option>
-						</select>
-					</div> -->
 					<br>
-
 					<div class="px-5">
 						<%@ include file="../map/map2.jsp"%>
 					</div>
+
+					<div id="neighbor"></div>
 				</div>
 			</div>
 

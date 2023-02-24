@@ -34,7 +34,7 @@ public class LoginController {
 		MemberDTO dto2 = memberDAO.login(dto);
 
 		if (dto2 != null) {
-			if (dto2.getAddress1().equals("")) {
+			if (dto2.getAddress1() == null || dto2.getAddress1().equals("")) {
 				dto2.setAddress1("서울 마포구 신촌로 94 그랜드마트 7층");
 			}
 
@@ -150,15 +150,15 @@ public class LoginController {
 	public String insert(MemberDTO dto, HttpSession session) {
 
 		String nickname = dto.getNickname();
-		
+
 		if (nickname.equals("") || nickname == null) {
 			dto.setNickname(dto.getName());
 		}
-		
+
 		memberDAO.insert(dto);
 		return "redirect:/member/login_page.do";
 	}
-	
+
 	@RequestMapping("checkid.do")
 	public ModelAndView checkid(MemberDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView();

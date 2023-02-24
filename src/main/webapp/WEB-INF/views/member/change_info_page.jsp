@@ -84,13 +84,14 @@
 			
 				<tr>
 					<td class="t-title">아이디</td>
-					<td style="width: 20em">${dto.getId()}<input type="hidden"
-						id="id" name="id" value="${dto.getId()}">
+					<td style="width: 20em">
+						${dto.getId()}<input type="hidden" id="id" name="id" value="${dto.getId()}">
 					</td>
 
 					<td class="t-title">비밀번호</td>
-					<td><input type="password" id="pw" name="pw"
-						value="${dto.getPw()}"></td>
+					<td>
+						<input type="password" id="pw" name="pw" value="${dto.getPw()}">
+					</td>
 				</tr>
 
 				<tr>
