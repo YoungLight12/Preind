@@ -21,8 +21,8 @@ function move(address) {
 </script>
 <c:set value="<%=request.getRequestURI()%>" var="filepath"></c:set>
 	 <%-- ${filepath} --%>
-
-<div class="list-group w-50 mt-5" style="min-width: 30px;" id="left">
+<div id="left">
+<div class="list-group w-50 mt-5" style="min-width: 30px;">
 	<input class="list-group-item list-group-item-action" 
 	style="background: #282828; color: white; text-align: center; font-size: 20px" value="MENU">
 		
@@ -81,6 +81,11 @@ function move(address) {
 	</div>
 	
 	<button type="button" class="list-group-item list-group-item-action">사이트 정보</button>
+</div>
+<!-- <br><br>
+	<div>
+		<img src="/resources/images/dog.jpg" width="280px">
+	</div> -->
 </div>
 
 

@@ -27,8 +27,10 @@ public class WriterDAOImpl implements WriterDAO {
 	}
 
 	@Override
-	public void insert(WriterDTO dto) {
+	public int insert(WriterDTO dto) {
 		sqlSession.insert("writer.insert", dto);
+		
+		return sqlSession.selectOne("writer.findwrite_code", dto.getId());
 	}
 
 	@Override
@@ -57,31 +59,22 @@ public class WriterDAOImpl implements WriterDAO {
 	}
 
 	@Override
-	public List<String> list_attach(int idx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insert_attach(String file_name) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update_attach(String file_name, int idx) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete_attach(String file_name) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void hit(int write_code) {
 		sqlSession.update("writer.hit", write_code);
+	}
+
+	@Override
+	public void insert(WriteFileDTO dto) {
+		sqlSession.insert("writer.insertfile", dto);
+	}
+
+	@Override
+	public List<String> filename(int write_code) {
+		return sqlSession.selectList("writer.filename", write_code);
+	}
+
+	@Override
+	public void dropfile(int write_code) {
+		sqlSession.delete("writer.dropfile", write_code);
 	}
 }

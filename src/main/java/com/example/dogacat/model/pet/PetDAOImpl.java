@@ -75,4 +75,9 @@ public class PetDAOImpl implements PetDAO {
 		return sqlSession.selectOne("pet.count", id);
 	}
 
+	@Override
+	public List<PetDTO> all() {
+		return sqlSession.selectList("pet.all");
+	}
+
 }
