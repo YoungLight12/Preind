@@ -24,7 +24,8 @@
 	border-radius: 5px;
 }
 </style>
-
+<br>
+<br>
 <div class="floating">
 	<c:choose>
 		<c:when test="${sessionScope.id == null}">
@@ -55,4 +56,8 @@
 			</div>
 		</c:otherwise>
 	</c:choose>
+	<br><br>
+	<div>
+		<img src="/resources/images/dog.jpg" width="280px">
+	</div>
 </div>

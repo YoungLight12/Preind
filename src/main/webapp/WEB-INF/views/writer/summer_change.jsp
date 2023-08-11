@@ -116,8 +116,17 @@
 		<div class="summernote">${dto.text}</div>
 
 		<hr>
-		<div class="border border-dark">
-			<input type="file" name="file1" class="p-3" multiple="multiple">
+		
+		<div class="d-flex border border-dark p-3">
+			<div class="flex-fill">
+			<c:forEach var="f" items="${files}">
+				${f.split("_")[1]}
+			</c:forEach>
+			</div>
+		
+			<div class="flex-fill">
+			<input type="file" name="files" multiple="multiple">
+			</div>
 		</div>
 		<hr>
 		<div class="btn-group btn-group-justified" role="group">
