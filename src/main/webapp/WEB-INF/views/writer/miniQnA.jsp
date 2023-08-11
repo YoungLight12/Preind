@@ -59,7 +59,7 @@
 			<tr>
 				<td colspan="6">
 					<div class="d-grid gap-2 col-6 mx-auto">
-						<button class="btn btn-dark" type="button" onclick="move(2)">More...</button>
+						<button class="btn btn-dark" type="button" onclick="move(2)">More...1111</button>
 					</div>
 				</td>
 			</tr>
