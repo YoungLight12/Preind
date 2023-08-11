@@ -94,7 +94,7 @@ public class WriterController {
 			String pet_name = petDAO.view(dto.getPet_code()).getPet_name();
 			mav.addObject("pet_name", pet_name);
 		} catch (Exception e) {
-			mav.addObject("pet_name", "기타");
+			mav.addObject("pet_name", "기타1111");
 		}
 		
 		mav.setViewName("writer/QnA_info");
