@@ -45,7 +45,7 @@ function pet_info(){
 		url : "/pet/info_only.do?pet_code="+${dto.getPet_code()},
 		
 		success : function(result) {
-			$("#neighbor").html(result);
+			$("#div1").html(result);
 		}
 	});
 	}
@@ -228,20 +228,17 @@ body {
 							<div>
 								<div class="dropdown">
 									<button class="btn btn-outline-info dropdown-toggle btn-sm" type="button"
-										data-bs-toggle="dropdown" aria-expanded="false">다운로드</button>
+										data-bs-toggle="dropdown" aria-expanded="false">
+										다운로드</button>
 									<ul class="dropdown-menu">
 									<c:choose>
-										<c:when test="${filename.size() == 0}">
+										<c:when test="${dto.getFilename() == null }">
 										<li class="px-2">파일 없음</li>
 										</c:when>
 										<c:otherwise>
-										<li>
-										<c:forEach var="file" items="${filename}">
-										<a class="dropdown-item" 
-										href="/writer/display_file.do?file_name=${file}">
-										${file.split("_")[1]}</a>
-										</c:forEach>
-										</li>
+										<li><a class="dropdown-item" 
+										href="/writer/display_file.do?filename="${dto.getFilename()}>
+										${dto.getFilename()}</a></li>
 										</c:otherwise>
 										</c:choose>
 									</ul>
@@ -265,7 +262,8 @@ body {
 								</c:if>
 							<c:if
 								test="${sessionScope.id.equals(dto.getId()) || sessionScope.lv eq '10' }">
-								<input type="button" class="btn btn-danger" value="삭제" 	onclick="de()">
+								<input type="button" class="btn btn-danger" value="삭제"
+									onclick="de()">
 							</c:if>
 
 							<input type="button" class="btn btn-secondary" value="목록"

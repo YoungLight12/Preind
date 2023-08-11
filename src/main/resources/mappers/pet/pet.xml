@@ -56,10 +56,6 @@
 		select filename from pet WHERE id=#{id}
 	</select>
 	
-	<select id="all" resultType="com.example.dogacat.model.pet.PetDTO">
-		select * from pet WHERE filename != '-'
-	</select>
-	
 	<select id="count" resultType="int">
 		select count(*) from pet where id=#{id}
 	</select>
