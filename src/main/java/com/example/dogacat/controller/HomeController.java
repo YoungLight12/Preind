@@ -55,7 +55,7 @@ public class HomeController {
 			MemberDTO dto = memberDAO.info(id);
 
 			if (dto.getAddress1() == null || dto.getAddress1().equals("")) {
-				addr = "서울 마포구 신촌로 94 그랜드마트";
+				addr = "서울 마포구 신촌로 94 그랜드마트1";
 			} else {
 				addr = dto.getAddress1();
 			}
