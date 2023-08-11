@@ -87,11 +87,11 @@ public class MapController {
 			lists.add(list);
 		}
 
-		// mav.addObject("all", pet_filename);
 		mav.addObject("filename", filename);
 
 		mav.addObject("list", lists);
 
+		mav.addObject("addr", addr);
 		mav.addObject("x", Geo.testmap(addr).get("x").toString());
 		mav.addObject("y", Geo.testmap(addr).get("y").toString());
 
@@ -147,6 +147,20 @@ public class MapController {
 //
 //		return "success";
 //	}
+	
+	@RequestMapping("neighbor.do")
+	public ModelAndView neighbor(String id, double a, ModelAndView mav) {
+		MemberDTO dto = memberDAO.info(id);
+		int count = petDAO.count(id);
+		
+		mav.setViewName("/map/neighbor");
+		
+		mav.addObject("a",a);
+		mav.addObject("dto", dto);
+		mav.addObject("count", count);
+		
+		return mav;
+	}
 
 	@RequestMapping("maptest")
 	public ModelAndView maptest(@RequestParam(defaultValue = "1") int range, HttpSession session, ModelAndView mav) {

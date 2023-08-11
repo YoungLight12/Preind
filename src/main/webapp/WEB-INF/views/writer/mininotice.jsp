@@ -42,7 +42,7 @@
 					<td>${notice.nickname}</td>
 					<td>${notice.title}</td>
 					<td><c:choose>
-							<c:when test="${notice.filename == null}">
+							<c:when test="${notice.filecount == 0}">
 							-
 							</c:when>
 							<c:otherwise>

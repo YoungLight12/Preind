@@ -42,7 +42,7 @@
 					<td>${QnA.nickname}</td>
 					<td>${QnA.title}</td>
 					<td><c:choose>
-							<c:when test="${QnA.filename == null}">
+							<c:when test="${QnA.filecount == 0}">
 							-
 							</c:when>
 							<c:otherwise>

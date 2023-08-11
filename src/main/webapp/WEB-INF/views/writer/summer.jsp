@@ -65,7 +65,7 @@
 		
 		document.form1.action = "/writer/insert.do?text="+text;
 		document.form1.submit();
-		
+	
 		window.parent.move('${address}');
 	}
 </script>
@@ -96,24 +96,11 @@
 				</select>
 			</div>
 		</div>
-		<!-- 
-			<div>
-				<select class="form-select" id="inputGroupSelect03"
-					aria-label="Example select with button addon">
-					<option selected>기타</option>
-					<option>강아지</option>
-					<option>고양이</option>
-					<option>기타 동물</option>
-				</select>
-			</div> -->
-			<div class="summernote"></div>
-		<!-- <textarea rows="5" cols="60" name="text" id="description"></textarea> -->
-		<!-- <div id="description">
-		
-		</div> -->
+
+		<div class="summernote"></div>
 		<hr>
 		<div class="border border-dark">
-			<input type="file" name="file1" class="p-3" multiple="multiple">
+			<input type="file" name="files" class="p-3" multiple="multiple">
 		</div>
 		<hr>
 		<div class="btn-group btn-group-justified" role="group">

@@ -44,6 +44,7 @@ public class HomeController {
 	public ModelAndView main(HttpSession session) {
 		List<WriterDTO> notice = writerDAO.list(0, 3, "all", "", 0);
 		List<WriterDTO> FAQs = writerDAO.list(0, 3, "all", "", 3);
+		List<PetDTO> all = petDAO.all();
 
 		ModelAndView mav = new ModelAndView();
 
@@ -93,6 +94,8 @@ public class HomeController {
 
 			lists.add(list);
 		}
+		
+		mav.addObject("all", all);
 
 		mav.addObject("FAQs", FAQs);
 		mav.addObject("notice", notice);
@@ -100,6 +103,7 @@ public class HomeController {
 		mav.addObject("list", lists);
 
 		mav.addObject("filename", filename);
+		mav.addObject("addr", addr);
 		mav.addObject("x", Geo.testmap(addr).get("x").toString());
 		mav.addObject("y", Geo.testmap(addr).get("y").toString());
 
