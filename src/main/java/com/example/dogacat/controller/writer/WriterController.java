@@ -99,7 +99,6 @@ public class WriterController {
 		
 		mav.setViewName("writer/QnA_info");
 		mav.addObject("dto", dto);
-		mav.addObject("address", address);
 		mav.addObject("address1234", address);
 
 		return mav;
