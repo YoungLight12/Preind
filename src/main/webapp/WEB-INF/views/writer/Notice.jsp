@@ -79,7 +79,7 @@
 										<td>${list.nickname}</td>
 										<td>${list.title}</td>
 										<td><c:choose>
-												<c:when test="${list.filecount == 0}">-</c:when>
+												<c:when test="${list.filename == null}">-</c:when>
 												<c:otherwise>
 													<img src="../resources/images/File.png" height="25px">
 												</c:otherwise>

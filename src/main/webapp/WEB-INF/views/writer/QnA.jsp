@@ -105,7 +105,7 @@ body{
 										<td>${list.nickname}</td>
 										<td>${list.title}</td>
 										<td><c:choose>
-												<c:when test="${list.filecount == 0}">
+												<c:when test="${list.filename == null}">
 												-
 												</c:when>
 												<c:otherwise>

@@ -43,7 +43,7 @@
 					<td>${FAQs.title}</td>
 					<td>
 						<c:choose>
-							<c:when test="${FAQs.filecount == 0}">-</c:when>
+							<c:when test="${FAQs.filename == null}">-</c:when>
 							<c:otherwise>
 								<img src="../resources/images/File.png" height="25px">
 							</c:otherwise>
