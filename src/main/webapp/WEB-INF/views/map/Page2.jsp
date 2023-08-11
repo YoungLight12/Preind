@@ -22,18 +22,6 @@ body {
 	background: url("/resources/images/background2.jpg");
 }
 </style>
-<script>
-	$(function(){
-		$.ajax({
-			type : "post",
-			url : "/pet/info_only.do?pet_code="+${dto.getPet_code()},
-			
-			success : function(result) {
-				$("#neighbor").html(result);
-			}
-		});
-	});
-</script>
 </head>
 <body>
 	<header><%@ include file="../include/menu2.jsp"%></header>

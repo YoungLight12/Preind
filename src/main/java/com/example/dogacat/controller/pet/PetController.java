@@ -72,7 +72,6 @@ public class PetController {
 	@RequestMapping("change_info_page.do")
 	public ModelAndView change_info(ModelAndView mav, HttpSession session, int pet_code) {
 		PetDTO dto = dao.view(pet_code);
-		// System.out.println(dto);
 		String master = dao.find_master(dto.getId());
 		String original = dto.getFilename().substring(dto.getFilename().indexOf("_") + 1);
 
@@ -91,29 +90,24 @@ public class PetController {
 
 	@RequestMapping("update.do")
 	public String update(PetDTO dto, HttpServletRequest request) {
-		String filename = "-";
-
 		if (!dto.getFile1().isEmpty()) {
-			filename = dto.getFile1().getOriginalFilename();
+			String filename = dto.getFile1().getOriginalFilename();
 
 			try {
 				ServletContext application = request.getSession().getServletContext();
 				String path = application.getRealPath("/resources/images/");
 
 				String savedName = uploadFile(dto.getFile1(), path);
-//				new File(path).mkdir();
-//				dto.getFile1().transferTo(new File(path + filename));
 				dto.setFilename(savedName);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//			dto.setFilename(filename);
 		} else {
 			PetDTO dto2 = dao.view(dto.getPet_code());
 			dto.setFilename(dto2.getFilename());
 		}
-
 		dao.update(dto);
+		
 		return "redirect:/pet/info.do?pet_code=" + dto.getPet_code();
 	}
 
