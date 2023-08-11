@@ -32,7 +32,7 @@ import com.example.dogacat.model.writer.WriterDTO;
 import com.example.dogacat.service.PageUtil;
 
 @Controller
-@RequestMapping("/writer/*")
+@RequestMapping("/writer/*1")
 public class WriterController {
 
 	@Autowired
